@@ -6,11 +6,17 @@
   var root = this
   var previous_gex = root.gex
 
+  var has_require = typeof require !== 'undefined'
+
+  var _ = root._ || has_require && require('lodash')
+  if( !_ )
+    throw new Error('gex requires underscore, see http://underscorejs.org')
+  
   function Gex(gexspec) {
     var self = this
 
     function dodgy(obj) {
-      return null == obj || void 0 == obj || Number.isNaN(obj)
+      return null == obj || void 0 == obj || _.isNaN(obj)
     }
 
     function clean(gexexp) {
@@ -94,7 +100,7 @@
         return new RegExp(gs)
       } else {
         var gexstrs = Object.keys(gexmap)
-        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : { ...gexmap }
+        return 1 == gexstrs.length ? gexmap[gexstrs[0]] : _.clone(gexmap)
       }
     }
 
