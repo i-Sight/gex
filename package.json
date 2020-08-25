@@ -25,7 +25,9 @@
     "Richard Rodger (http://richardrodger.com/)"
   ],
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.20"
+  },
   "main": "gex.js",
   "repository": {
     "type": "git",
